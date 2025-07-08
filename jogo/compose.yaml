@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: node server.js
+
+  redis:
+    image: redis:alpine
