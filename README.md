@@ -1,7 +1,7 @@
 # Projeto: Sorteio de Números com Persistência e Watchtower
 
 Este projeto consiste em uma aplicação web que:
-- Exibe um número sorteado a cada 5 segundos
+- Exibe um número sorteado a cada 20 segundos
 - Armazena os números sorteados em um banco de dados MongoDB
 - A cada 5 números sorteados, exibe um número aleatório já sorteado anteriormente
 - Usa Docker e Watchtower para gerenciar e atualizar os containers
