@@ -1,23 +1,29 @@
 version: '3.8'
-
 services:
-  frontend:
-    image: nginx:alpine
-    ports:
-      - "8080:80"
+  mongo:
+    image: mongo
     volumes:
-      - ./frontend:/usr/share/nginx/html:ro
-    depends_on:
-      - backend
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
 
   backend:
     build: ./backend
+    depends_on:
+      - mongo
     ports:
       - "3000:3000"
-    volumes:
-      - ./backend:/app
-    working_dir: /app
-    command: node server.js
 
-  redis:
-    image: redis:alpine
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+
+volumes:
+  mongo_data:
