@@ -12,34 +12,19 @@ Este projeto consiste em uma aplicação web que:
 
 ## 🚀 Como rodar o projeto
 
-### 1. Clone ou copie os arquivos do projeto
-Garanta que você tenha a seguinte estrutura:
-```
-numero-sorteado/
-├── backend/
-│   ├── Dockerfile
-│   ├── index.js
-│   └── package.json
-├── frontend/
-│   ├── Dockerfile
-│   └── index.html
-├── docker-compose.yml
-```
-
-### 2. Abra o terminal na pasta `numero-sorteado/`
+### 1. Copie o template de variáveis de ambiente
 ```bash
-cd numero-sorteado
+cp .env.template .env
 ```
 
-### 3. Construa e suba os containers com Docker Compose
+### 2. Suba os containers
 ```bash
 docker-compose up --build
 ```
 
-### 4. Acesse a aplicação
-Abra o navegador e vá até:
-```
-http://localhost:8080
+### 3. Acesse a aplicação
+- Frontend: http://localhost:8080
+- Backend (API): http://localhost:3000
 ```
 
 Você verá os números sendo sorteados a cada 5 segundos.

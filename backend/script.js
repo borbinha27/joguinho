@@ -1,21 +1,21 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
 
 const app = express();
-const port = 3000;
+const port = process.env.BACKEND_PORT || 3000;
 
-const url = 'mongodb://mongo:27017';
-const client = new MongoClient(url);
-const dbName = 'sorteios';
+const mongoUri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@mongo:27017/${process.env.MONGO_DB_NAME}?authSource=admin`;
+const client = new MongoClient(mongoUri);
 
 app.use(cors());
 app.use(bodyParser.json());
 
 async function main() {
   await client.connect();
-  const db = client.db(dbName);
+  const db = client.db(process.env.MONGO_DB_NAME);
   const numeros = db.collection('numeros');
 
   app.post('/api/salvar', async (req, res) => {
