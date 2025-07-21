@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   mongo:
     image: mongo
@@ -26,6 +25,7 @@ services:
       - app-net
 
   frontend:
+    image: arthur2701/joguinho-frontend
     build: ./frontend
     ports:
       - "${FRONTEND_PORT}:80"
