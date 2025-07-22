@@ -1,11 +1,10 @@
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
 
 const app = express();
-const port = process.env.BACKEND_PORT || 3000;
+const port = process.env.BACKEND_PORT
 
 const mongoUri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@mongo:27017/${process.env.MONGO_DB_NAME}?authSource=admin`;
 const client = new MongoClient(mongoUri);
